@@ -1,85 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Student.ConsoleTodo
 {
-    class Task
-    {
-        public string TitleTask { get; set; }
-        public string DescriptionTask { get; set; }
-
-        public Task AddTask()
-        {
-            var taskTitle = GetTitleTask();
-            var taskDescription = GetTaskDescription();
-
-            return new Task
-            {
-                TitleTask = taskTitle,
-                DescriptionTask = taskDescription
-            };
-        }
-
-        private string GetTitleTask()
-        {
-            Console.WriteLine("Введите заголовок задачи. По завершению ввода нажмите Enter: ");
-            return Console.ReadLine();
-        }
-
-        private string GetTaskDescription()
-        {
-            Console.WriteLine("Введите описание задачи: ");
-            return Console.ReadLine();
-        }
-
-        public override string ToString()
-        {
-            return $"Заголовок: {TitleTask} \nОписание: {DescriptionTask}";
-        }
-    }
-
+    /// <summary>
+    /// Программа
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Список задач для хранения и управлением объектами типа Task
+        /// </summary>
         private static List<Task> TaskList { get; set; } = new List<Task>();
 
         static void Main(string[] args)
         {                 
-            
             while (true)
             {
+                Console.Clear();
                 ShowInfo();
 
                 string insertValue = Console.ReadLine();
                 int numberTaskInt;
-
+                Console.Clear();
                 if (int.TryParse(insertValue, out numberTaskInt))
                 {
                     CallTaskByNumber(numberTaskInt);
+
                 }
                 else
                 {
                     Console.WriteLine("Ошибка: Введите номер для вызова программы");
-                    return;
+                }
+
+                while (true)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Для повторного ввода операции нажмите Enter, для завершения приложения Esc.");
+                    ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+                    if (keyInfo.Key == ConsoleKey.Escape)
+                    {
+                        return;
+                    }
+                    if (keyInfo.Key == ConsoleKey.Enter)
+                    {
+                        break;
+                    }
+                    Console.WriteLine();
                 }
             }
         }
-
+        /// <summary>
+        /// Вызов задачи по номеру
+        /// Методы
+        /// </summary>
+        /// <param name="numberTask"></param>
         private static void CallTaskByNumber(int numberTask)
-        {
-            Console.WriteLine();
-            Console.Clear();
-
+        { 
             switch (numberTask)
             {
                 case 1:
                     Console.WriteLine("1 - Посмотреть список задач");
                     ViewTaskList();
+
+                    Exit();
+
                     break;
 
                 case 2:
                     Console.WriteLine("2 - Добавить задачу");
                     Task task = new Task().AddTask();
-                    TaskList.Add(task);
+                    TaskList.Add(task);     
                     break;
 
                 default:
@@ -88,20 +81,51 @@ namespace Student.ConsoleTodo
             }
         }
 
+        /// <summary>
+        /// Показать информацию
+        /// </summary>
         private static void ShowInfo()
         {
             Console.WriteLine("Для вызова выполняемой подпрограммы укажите ее номер и нажмите Enter: ");
-            Console.WriteLine("1 - Посмотреть список задач");
+            Console.WriteLine("\r\n1 - Посмотреть список задач");
             Console.WriteLine("2 - Добавить задачу");
+
         }
 
+        /// <summary>
+        /// Показать список задач
+        /// </summary>
         public static void ViewTaskList()
         {
-            Console.WriteLine("Список задач:");
+            int i = 1; 
+            Console.WriteLine("\r\nСписок задач:");
             foreach (var task in TaskList)
             {
+                Console.WriteLine($"\r\nЗадача {i++}");
                 Console.WriteLine(task);
             }
-        }       
+        }
+
+        /// <summary>
+        /// Выход в список подпрограмм
+        /// </summary>
+        private static void Exit()
+        {
+            string str = "\r\nДля возврата к списку подпрограмм нажмите Esc: ";
+            Console.WriteLine(str);
+
+            ConsoleKeyInfo key = Console.ReadKey(true);
+
+            if (key.Key == ConsoleKey.Escape)
+            {
+                Console.Clear();
+                return;
+            }
+            else
+            {
+                Console.WriteLine("\r\nОшибка. Для возврата к списку подпрограмм нажмите Esc: ");
+                return;
+            }
+        }
     }
 }
