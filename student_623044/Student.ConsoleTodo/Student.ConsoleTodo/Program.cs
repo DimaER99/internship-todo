@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Student.ConsoleTodo
 {
@@ -52,7 +51,7 @@ namespace Student.ConsoleTodo
         /// <summary>
         /// Вызов задачи по номеру
         /// </summary>
-        /// <param name="numberTask"></param>
+        /// <param name="numberTask">Номер задачи</param>
         private static void CallTaskByNumber(int numberTask)
         { 
             switch (numberTask)

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Student.ConsoleTodo
 {
@@ -22,9 +18,9 @@ namespace Student.ConsoleTodo
         public string DescriptionTask { get; set; }
 
         /// <summary>
-        /// 
+        /// Добавление задачи
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Задачу</returns>
         public Task AddTask()
         {
             var taskTitle = GetTitleTask();
@@ -40,21 +36,20 @@ namespace Student.ConsoleTodo
         /// <summary>
         /// Вводим заголовок задачи
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Заголовок задачи</returns>
         private string GetTitleTask()
         {
             while(true)
             {
                 Console.WriteLine("Введите заголовок задачи. По завершению ввода нажмите Enter: ");
                 return Console.ReadLine();
-
             }
         }
 
         /// <summary>
         /// Вводим описание задачи
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Описание задачи</returns>
         private static string GetTaskDescription()
         {
             Console.WriteLine("Введите описание задачи: ");
@@ -65,7 +60,7 @@ namespace Student.ConsoleTodo
         /// <summary>
         /// Используем интерполяцию строк для вывода информации об объектах
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Строку, содержащую заголовок и описание задачи</returns>
         public override string ToString()
         {
             return $"Заголовок: {TitleTask} \nОписание: {DescriptionTask}";
