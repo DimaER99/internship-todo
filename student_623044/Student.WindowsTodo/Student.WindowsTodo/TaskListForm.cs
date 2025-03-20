@@ -39,7 +39,6 @@ namespace Student.WindowsTodo
             dataGridView1.Columns[1].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
             dataGridView1.Columns[0].Width = 100;
-            dataGridView1.Columns[1].Width = 100;
 
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
