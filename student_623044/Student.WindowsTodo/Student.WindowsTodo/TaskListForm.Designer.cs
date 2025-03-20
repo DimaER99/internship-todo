@@ -1,7 +1,7 @@
 ﻿
 namespace Student.WindowsTodo
 {
-    partial class MainForm
+    partial class TaskListForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -45,7 +45,7 @@ namespace Student.WindowsTodo
             this.button5.TabIndex = 4;
             this.button5.Text = "Добавить задачу";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.ButtonAddTask);
             // 
             // dataGridView1
             // 
@@ -56,14 +56,15 @@ namespace Student.WindowsTodo
             this.Column3});
             this.dataGridView1.Location = new System.Drawing.Point(80, 91);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(542, 501);
+            this.dataGridView1.Size = new System.Drawing.Size(387, 328);
             this.dataGridView1.TabIndex = 5;
-            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
+            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridView);
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Задача";
             this.Column1.Name = "Column1";
+            this.Column1.Width = 68;
             // 
             // Column2
             // 
@@ -73,11 +74,11 @@ namespace Student.WindowsTodo
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "";
+            this.Column3.HeaderText = "Удалить";
             this.Column3.Name = "Column3";
             this.Column3.Text = "Удалить";
             // 
-            // MainForm
+            // TaskListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -85,7 +86,7 @@ namespace Student.WindowsTodo
             this.ClientSize = new System.Drawing.Size(800, 604);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button5);
-            this.Name = "MainForm";
+            this.Name = "TaskListForm";
             this.Text = "MainForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

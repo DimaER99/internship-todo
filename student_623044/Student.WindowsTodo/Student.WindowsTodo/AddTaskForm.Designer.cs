@@ -1,7 +1,7 @@
 ﻿
 namespace Student.WindowsTodo
 {
-    partial class FormModalTest
+    partial class AddTaskForm
     {
         /// <summary>
         /// Required designer variable.
@@ -69,7 +69,7 @@ namespace Student.WindowsTodo
             this.button1.TabIndex = 4;
             this.button1.Text = "Добавить задачу";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.ButtonConfirmAddTask);
             // 
             // button2
             // 
@@ -79,7 +79,7 @@ namespace Student.WindowsTodo
             this.button2.TabIndex = 5;
             this.button2.Text = "Отмена";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.ButtonCancel);
             // 
             // label2
             // 
