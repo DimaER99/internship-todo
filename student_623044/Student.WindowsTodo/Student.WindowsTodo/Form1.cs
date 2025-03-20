@@ -34,19 +34,16 @@ namespace Student.WindowsTodo
 
         public void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                dataGridView1.AutoResizeRow(row.Index, DataGridViewAutoSizeRowMode.AllCells);
-            }
-
-            dataGridView1.AutoResizeColumn(0, DataGridViewAutoSizeColumnMode.AllCells);
-            dataGridView1.AutoResizeColumn(1, DataGridViewAutoSizeColumnMode.AllCells);
 
             dataGridView1.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dataGridView1.Columns[1].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            dataGridView1.Columns[0].Width = 200;
-            dataGridView1.Columns[1].Width = 200;
+            dataGridView1.Columns[0].Width = 100;
+
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            dataGridView1.AutoResizeColumn(0, DataGridViewAutoSizeColumnMode.AllCells);
+            dataGridView1.AutoResizeColumn(1, DataGridViewAutoSizeColumnMode.AllCells);
 
             this.dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
