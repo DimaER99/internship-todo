@@ -54,7 +54,6 @@ namespace Student.ConsoleTodo
         }
         /// <summary>
         /// Вызов задачи по номеру
-        /// Методы
         /// </summary>
         /// <param name="numberTask"></param>
         private static void CallTaskByNumber(int numberTask)
@@ -97,12 +96,14 @@ namespace Student.ConsoleTodo
         /// </summary>
         public static void ViewTaskList()
         {
-            int i = 1; 
+            int number = 1; 
             Console.WriteLine("\r\nСписок задач:");
             foreach (var task in TaskList)
             {
-                Console.WriteLine($"\r\nЗадача {i++}");
+                number += 1;
+                Console.WriteLine($"Задача номер: '{number}'");
                 Console.WriteLine(task);
+                break;
             }
         }
 
