@@ -4,9 +4,6 @@ using System.Linq;
 
 namespace Student.ConsoleTodo
 {
-    /// <summary>
-    /// Программа
-    /// </summary>
     class Program
     {
         /// <summary>
@@ -96,14 +93,13 @@ namespace Student.ConsoleTodo
         /// </summary>
         public static void ViewTaskList()
         {
-            int number = 1; 
+            int number = 0; 
             Console.WriteLine("\r\nСписок задач:");
             foreach (var task in TaskList)
             {
                 number += 1;
-                Console.WriteLine($"Задача номер: '{number}'");
+                Console.WriteLine($"\r\nЗадача номер: '{number}'");
                 Console.WriteLine(task);
-                break;
             }
         }
 
