@@ -35,12 +35,11 @@ namespace Student.WindowsTodo
         /// <param name="e"></param>
         public void DataGridView(object sender, MouseEventArgs e)
         {
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
             dataGridView1.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dataGridView1.Columns[1].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            dataGridView1.Columns[0].Width = 100;
-
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
             dataGridView1.AutoResizeColumn(0, DataGridViewAutoSizeColumnMode.AllCells);
             dataGridView1.AutoResizeColumn(1, DataGridViewAutoSizeColumnMode.AllCells);
