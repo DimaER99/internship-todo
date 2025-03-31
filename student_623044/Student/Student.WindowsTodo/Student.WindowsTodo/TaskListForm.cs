@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Student.Todo;
+using System;
 using System.Windows.Forms;
 
 namespace Student.WindowsTodo
@@ -15,7 +16,7 @@ namespace Student.WindowsTodo
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonAddTask(object sender, EventArgs e)
+        public void ButtonAddTask(object sender, EventArgs e)
         {
             var task = new Task("", "");
 
