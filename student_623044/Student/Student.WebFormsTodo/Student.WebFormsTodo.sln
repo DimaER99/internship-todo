@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.35731.53
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.WebFormsTodo", "WebApplication1\Student.WebFormsTodo.csproj", "{0C08AC23-06B3-4829-89A8-26A9C6A8CAD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.WebFormsTodo", "Student.WebFormsTodo\Student.WebFormsTodo.csproj", "{0C08AC23-06B3-4829-89A8-26A9C6A8CAD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.WindowsTodo", "Stud
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.Todo", "Student.Todo\Student.Todo.csproj", "{1F9A26AB-563A-43A9-A965-6BCC0070771D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.WebFormsTodo", "Student.WebFormsTodo\WebApplication1\Student.WebFormsTodo.csproj", "{0C08AC23-06B3-4829-89A8-26A9C6A8CAD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.WebFormsTodo", "Student.WebFormsTodo\Student.WebFormsTodo\Student.WebFormsTodo.csproj", "{0C08AC23-06B3-4829-89A8-26A9C6A8CAD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
