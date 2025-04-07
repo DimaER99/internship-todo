@@ -49,6 +49,7 @@ namespace Student.ConsoleTodo
                 }
             }
         }
+
         /// <summary>
         /// Вызов задачи по номеру
         /// </summary>
@@ -106,7 +107,8 @@ namespace Student.ConsoleTodo
             {
                 number += 1;
                 Console.WriteLine($"\r\nЗадача номер: '{number}'");
-                Console.WriteLine("Название" + task.Title);
+                Console.WriteLine("Заголовок: " + task.Title);
+                Console.WriteLine("Описание:  " + task.Description);
             }
         }
 
@@ -130,42 +132,6 @@ namespace Student.ConsoleTodo
                 Console.WriteLine("\r\nОшибка. Для возврата к списку подпрограмм нажмите Esc: ");
                 return;
             }
-        }
-
-        public Task AddTask()
-        {
-            var taskTitle = GetTitleTask();
-            var taskDescription = GetTaskDescription();
-
-            return new Task($"{taskTitle}", $"{taskDescription}")
-            {
-                Title = taskTitle,
-                Description = taskDescription
-            };
-        }
-
-        /// <summary>
-        /// Вводим заголовок задачи
-        /// </summary>
-        /// <returns>Заголовок задачи</returns>
-        private string GetTitleTask()
-        {
-            while (true)
-            {
-                Console.WriteLine("Введите заголовок задачи. По завершению ввода нажмите Enter: ");
-                return Console.ReadLine();
-            }
-        }
-
-        /// <summary>
-        /// Вводим описание задачи
-        /// </summary>
-        /// <returns>Описание задачи</returns>
-        private static string GetTaskDescription()
-        {
-            Console.WriteLine("Введите описание задачи: ");
-            return Console.ReadLine();
-
         }
     }
 }

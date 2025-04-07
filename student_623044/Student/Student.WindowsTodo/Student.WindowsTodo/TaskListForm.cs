@@ -11,6 +11,7 @@ namespace Student.WindowsTodo
             InitializeComponent();
             dataGridView1.ReadOnly = true;
         }
+
         /// <summary>
         /// Добавить задачу
         /// </summary>
@@ -29,6 +30,7 @@ namespace Student.WindowsTodo
                 dataGridView1.Rows.Add(task.Title, task.Description);
             }
         }
+
         /// <summary>
         /// Основная форма DataGridView
         /// </summary>

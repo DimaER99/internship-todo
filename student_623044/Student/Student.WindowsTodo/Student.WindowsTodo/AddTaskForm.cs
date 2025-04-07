@@ -13,6 +13,7 @@ namespace Student.WindowsTodo
 
             _task = task;
         }
+
         /// <summary>
         /// Подтверждение добавления задачи
         /// </summary>

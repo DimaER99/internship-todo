@@ -21,6 +21,7 @@ namespace Student.WindowsTodo
             GridView = gridView;
             Index = curentIndex;
         }
+
         /// <summary>
         /// Подтверждение удаления задачи
         /// </summary>
@@ -34,6 +35,7 @@ namespace Student.WindowsTodo
 
             this.Close();
         }
+
         /// <summary>
         /// Отмена
         /// </summary>
