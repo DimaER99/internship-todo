@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Student.Todo;
+using System;
 using System.Collections.Generic;
 
 namespace Student.ConsoleTodo
 {
-    class Program
+    public class Program
     {
         /// <summary>
         /// Список задач для хранения и управлением объектами типа Task
         /// </summary>
-        private static List<Task> TaskList { get; set; } = new List<Task>();
+        public static List<Task> TaskList { get; set; } = new List<Task>();
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {                 
             while (true)
             {
@@ -23,8 +24,8 @@ namespace Student.ConsoleTodo
                 if (int.TryParse(insertValue, out numberTaskInt))
                 {
                     CallTaskByNumber(numberTaskInt);
-
                 }
+
                 else
                 {
                     Console.WriteLine("Ошибка: Введите номер для вызова программы");
@@ -48,11 +49,12 @@ namespace Student.ConsoleTodo
                 }
             }
         }
+
         /// <summary>
         /// Вызов задачи по номеру
         /// </summary>
         /// <param name="numberTask">Номер задачи</param>
-        private static void CallTaskByNumber(int numberTask)
+        public static void CallTaskByNumber(int numberTask)
         { 
             switch (numberTask)
             {
@@ -66,7 +68,14 @@ namespace Student.ConsoleTodo
 
                 case 2:
                     Console.WriteLine("2 - Добавить задачу");
-                    Task task = new Task().AddTask();
+
+                    Console.WriteLine("Введите заголовок");
+                    string title = Console.ReadLine();
+                    Console.WriteLine("Введите описание");
+                    string description = Console.ReadLine();
+
+                    Task task = new Task(title, description);
+
                     TaskList.Add(task);     
                     break;
 
@@ -79,7 +88,7 @@ namespace Student.ConsoleTodo
         /// <summary>
         /// Показать информацию
         /// </summary>
-        private static void ShowInfo()
+        public static void ShowInfo()
         {
             Console.WriteLine("Для вызова выполняемой подпрограммы укажите ее номер и нажмите Enter: ");
             Console.WriteLine("\r\n1 - Посмотреть список задач");
@@ -98,14 +107,15 @@ namespace Student.ConsoleTodo
             {
                 number += 1;
                 Console.WriteLine($"\r\nЗадача номер: '{number}'");
-                Console.WriteLine(task);
+                Console.WriteLine("Заголовок: " + task.Title);
+                Console.WriteLine("Описание:  " + task.Description);
             }
         }
 
         /// <summary>
         /// Выход в список подпрограмм
         /// </summary>
-        private static void Exit()
+        public static void Exit()
         {
             string str = "\r\nДля возврата к списку подпрограмм нажмите Esc: ";
             Console.WriteLine(str);

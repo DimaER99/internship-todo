@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Student.Todo;
+using System;
 using System.Windows.Forms;
 
 namespace Student.WindowsTodo
@@ -10,12 +11,13 @@ namespace Student.WindowsTodo
             InitializeComponent();
             dataGridView1.ReadOnly = true;
         }
+
         /// <summary>
         /// Добавить задачу
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonAddTask(object sender, EventArgs e)
+        public void ButtonAddTask(object sender, EventArgs e)
         {
             var task = new Task("", "");
 
@@ -28,6 +30,7 @@ namespace Student.WindowsTodo
                 dataGridView1.Rows.Add(task.Title, task.Description);
             }
         }
+
         /// <summary>
         /// Основная форма DataGridView
         /// </summary>

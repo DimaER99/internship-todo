@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassTask.cs" />
     <Compile Include="TaskListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +96,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Student.Todo\Student.Todo.csproj">
+      <Project>{1f9a26ab-563a-43a9-a965-6bcc0070771d}</Project>
+      <Name>Student.Todo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

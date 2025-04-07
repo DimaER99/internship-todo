@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Student.WindowsTodo
@@ -28,6 +21,7 @@ namespace Student.WindowsTodo
             GridView = gridView;
             Index = curentIndex;
         }
+
         /// <summary>
         /// Подтверждение удаления задачи
         /// </summary>
@@ -41,6 +35,7 @@ namespace Student.WindowsTodo
 
             this.Close();
         }
+
         /// <summary>
         /// Отмена
         /// </summary>
