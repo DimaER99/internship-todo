@@ -12,7 +12,7 @@ namespace Student.ConsoleTodo
         public static List<Task> TaskList { get; set; } = new List<Task>();
 
         public static void Main(string[] args)
-        {                 
+        {
             while (true)
             {
                 Console.Clear();
@@ -55,7 +55,7 @@ namespace Student.ConsoleTodo
         /// </summary>
         /// <param name="numberTask">Номер задачи</param>
         public static void CallTaskByNumber(int numberTask)
-        { 
+        {
             switch (numberTask)
             {
                 case 1:
@@ -76,7 +76,7 @@ namespace Student.ConsoleTodo
 
                     Task task = new Task(title, description);
 
-                    TaskList.Add(task);     
+                    TaskList.Add(task);
                     break;
 
                 default:
@@ -101,7 +101,7 @@ namespace Student.ConsoleTodo
         /// </summary>
         public static void ViewTaskList()
         {
-            int number = 0; 
+            int number = 0;
             Console.WriteLine("\r\nСписок задач:");
             foreach (var task in TaskList)
             {

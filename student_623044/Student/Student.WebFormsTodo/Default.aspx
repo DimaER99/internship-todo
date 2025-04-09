@@ -7,7 +7,7 @@
         <asp:HiddenField runat="server" ID="hfSelectIndex" />
         <asp:Button ID="buttonAdd" runat="server" CssClass="btn btn-primary mb-2" OnClick="bAddTask_OnClick" Text="Добавить задачу" />
         <div>
-            <asp:GridView ID="dataView" runat="server" AutoGenerateColumns="false" OnRowDeleting="lbRowDeletingTask" OnRowEditing="dataView_RowEditing" AllowPaging="true" CssClass="table table-bordered">
+            <asp:GridView ID="gvTask" runat="server" AutoGenerateColumns="false" OnRowDeleting="gvTask_OnRowDeleting" OnRowEditing="gvTask_OnRowEditing" AllowPaging="true" CssClass="table table-bordered">
                 <Columns>
                     <asp:BoundField DataField="Title" HeaderText="Заголовок" ReadOnly="true" />
                     <asp:BoundField DataField="Description" HeaderText="Описание" ReadOnly="true" />
@@ -31,8 +31,6 @@
                             <label>Заголовок задачи</label>
                             <asp:TextBox ID="tbAddTitle" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-12">
                             <label>Описание задачи</label>
                             <asp:TextBox ID="tbAddDescription" runat="server" CssClass="form-control"></asp:TextBox>
@@ -47,6 +45,7 @@
         </div>
     </div>
 
+
     <div class="modal" tabindex="-1" id="modalEditTask">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -60,9 +59,6 @@
                             <label>Заголовок задачи</label>
                             <asp:TextBox ID="tbEditTitle" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
-                    </div>
-                    <div class="row">
-
                         <div class="col-12">
                             <label>Описание задачи</label>
                             <asp:TextBox ID="tbEditDescription" runat="server" CssClass="form-control"></asp:TextBox>

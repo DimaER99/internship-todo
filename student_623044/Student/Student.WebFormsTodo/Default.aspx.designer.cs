@@ -33,13 +33,13 @@ namespace Student.WebFormsTodo
         protected global::System.Web.UI.WebControls.Button buttonAdd;
 
         /// <summary>
-        /// dataView control.
+        /// gvTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dataView;
+        protected global::System.Web.UI.WebControls.GridView gvTask;
 
         /// <summary>
         /// tbAddTitle control.

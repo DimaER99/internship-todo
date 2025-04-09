@@ -13,8 +13,8 @@ namespace Student.WebFormsTodo
             if (!IsPostBack)
             {
                 var cacheList = Cache["taskList"] as List<Task>;
-                dataView.DataSource = cacheList;
-                dataView.DataBind();
+                gvTask.DataSource = cacheList;
+                gvTask.DataBind();
             }
         }
 
@@ -35,7 +35,7 @@ namespace Student.WebFormsTodo
             ClientScript.RegisterStartupScript(this.GetType(), "ShowAlert", "const myModalAlternative = new bootstrap.Modal('#modalAddTask', null); myModalAlternative.show();", true);
         }
 
-        protected void dataView_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gvTask_OnRowEditing(object sender, GridViewEditEventArgs e)
         {
             var cacheList = Cache["taskList"] as List<Task>;
             int selectedIndex = e.NewEditIndex;
@@ -45,8 +45,8 @@ namespace Student.WebFormsTodo
             tbEditTitle.Text = cacheList[selectedIndex].Title;
             tbEditDescription.Text = cacheList[selectedIndex].Description;
 
-            dataView.DataSource = cacheList;
-            dataView.DataBind();
+            gvTask.DataSource = cacheList;
+            gvTask.DataBind();
 
             ClientScript.RegisterStartupScript(this.GetType(), "ShowAlert", "const myModalAlternative = new bootstrap.Modal('#modalEditTask', null); myModalAlternative.show();", true);
         }
@@ -66,8 +66,8 @@ namespace Student.WebFormsTodo
                 cacheList.Add(new Task(tbAddTitle.Text, tbAddDescription.Text));
             }
 
-            dataView.DataSource = Cache["taskList"];
-            dataView.DataBind();
+            gvTask.DataSource = Cache["taskList"];
+            gvTask.DataBind();
         }
 
         protected void lbSaveEditChanges_OnClick(object sender, EventArgs e)
@@ -90,8 +90,8 @@ namespace Student.WebFormsTodo
 
             Cache["taskList"] = cacheList;
             hfSelectIndex.Value = string.Empty;
-            dataView.DataSource = cacheList;
-            dataView.DataBind();
+            gvTask.DataSource = cacheList;
+            gvTask.DataBind();
         }
 
         protected void lbEditDeleteTask_OnClick(object sender, EventArgs e)
@@ -103,11 +103,11 @@ namespace Student.WebFormsTodo
             cacheList.Remove(cacheList[selectedIndex]);
 
             hfSelectIndex.Value = string.Empty;
-            dataView.DataSource = cacheList;
-            dataView.DataBind();
+            gvTask.DataSource = cacheList;
+            gvTask.DataBind();
         }
 
-        protected void lbRowDeletingTask(object sender, GridViewDeleteEventArgs e)
+        protected void gvTask_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             hfSelectIndex.Value = e.RowIndex.ToString();
 
