@@ -124,10 +124,6 @@ namespace Student.WebFormsTodo
 
         protected void gvTask_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            var dataSet = service.GetTasksFromDataBase();
-            gvTask.DataSource = dataSet.Tables[0];
-            gvTask.DataBind();
-
             int pageCount = gvTask.PageCount;
             int newPageIndex = e.NewPageIndex;
 
@@ -138,6 +134,7 @@ namespace Student.WebFormsTodo
 
             gvTask.PageIndex = newPageIndex;
 
+            var dataSet = service.GetTasksFromDataBase();
             gvTask.DataSource = dataSet.Tables[0];
             gvTask.DataBind();
         }
