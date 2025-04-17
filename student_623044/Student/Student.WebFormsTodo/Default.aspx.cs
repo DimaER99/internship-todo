@@ -1,9 +1,6 @@
 ﻿using Student.Todo;
-using Student.Todo.Data;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,28 +8,13 @@ namespace Student.WebFormsTodo
 {
     public partial class _Default : Page
     {
-        static string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-        TaskService service = new TaskService(connectionString);
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 var cacheList = Cache["taskList"] as List<Task>;
-
-                if (cacheList != null)
-                {
-                    gvTask.DataSource = cacheList;
-                    gvTask.DataBind();
-                }
-                else
-                {
-                    var dataSet = service.GetTasksFromDataBase();
-                    gvTask.DataSource = dataSet.Tables[0];
-                    gvTask.DataBind();
-                    Cache["taskList"] = dataSet.Tables[0].AsEnumerable();
-                }
+                gvTask.DataSource = cacheList;
+                gvTask.DataBind();
             }
         }
 
@@ -50,10 +32,24 @@ namespace Student.WebFormsTodo
                 tbAddDescription.Text = string.Empty;
             }
 
-            ClientScript.RegisterStartupScript(this.GetType(),
-                "ShowAlert", "const myModalAlternative = new bootstrap.Modal('#modalAddTask', null); myModalAlternative.show();", true);
+            ClientScript.RegisterStartupScript(this.GetType(), "ShowAlert", "const myModalAlternative = new bootstrap.Modal('#modalAddTask', null); myModalAlternative.show();", true);
         }
 
+        protected void gvTask_OnRowEditing(object sender, GridViewEditEventArgs e)
+        {
+            var cacheList = Cache["taskList"] as List<Task>;
+            int selectedIndex = e.NewEditIndex;
+
+            hfSelectIndex.Value = selectedIndex.ToString();
+
+            tbEditTitle.Text = cacheList[selectedIndex].Title;
+            tbEditDescription.Text = cacheList[selectedIndex].Description;
+
+            gvTask.DataSource = cacheList;
+            gvTask.DataBind();
+
+            ClientScript.RegisterStartupScript(this.GetType(), "ShowAlert", "const myModalAlternative = new bootstrap.Modal('#modalEditTask', null); myModalAlternative.show();", true);
+        }
 
         protected void lbSaveAddChanges_OnClick(object sender, EventArgs e)
         {
@@ -70,66 +66,52 @@ namespace Student.WebFormsTodo
                 cacheList.Add(new Task(tbAddTitle.Text, tbAddDescription.Text));
             }
 
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-            TaskService service = new TaskService(connectionString);
-
-            Task task = new Task(tbAddTitle.Text, tbAddDescription.Text);
-            service.AddTaskInDataBase(task);
-
-            var dataSet = service.GetTasksFromDataBase();
-            gvTask.DataSource = dataSet.Tables[0];
+            gvTask.DataSource = Cache["taskList"];
             gvTask.DataBind();
         }
 
         protected void lbSaveEditChanges_OnClick(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            TaskService service = new TaskService(connectionString);
+            var cacheList = Cache["taskList"] as List<Task>;
 
-            var idTask = (int)Cache["idTask"];
-            string changeTitle = tbEditTitle.Text;
-            string changeDescription = tbEditDescription.Text;
+            if (cacheList == null && hfSelectIndex.Value == null)
+            {
+                return;
+            }
 
-            service.ChangeTaskFromId(idTask, changeTitle, changeDescription);
-            var dataSet = service.GetTasksFromDataBase();
-            gvTask.DataSource = dataSet.Tables[0];
+            int selectedIndex = Convert.ToInt32(hfSelectIndex.Value);
+            var existingTask = cacheList[selectedIndex];
+
+            if (existingTask != null)
+            {
+                existingTask.Title = tbEditTitle.Text.Trim();
+                existingTask.Description = tbEditDescription.Text.Trim();
+            }
+
+            Cache["taskList"] = cacheList;
+            hfSelectIndex.Value = string.Empty;
+            gvTask.DataSource = cacheList;
             gvTask.DataBind();
         }
 
-        protected void gvTask_OnRowEditing(object sender, GridViewEditEventArgs e)
+        protected void lbEditDeleteTask_OnClick(object sender, EventArgs e)
         {
-            Cache["idTask"] = (int)gvTask.DataKeys[e.NewEditIndex].Values["Id"];
-            var title = gvTask.Rows[e.NewEditIndex].Cells[1].Text;
-            var description = gvTask.Rows[e.NewEditIndex].Cells[2].Text;
+            var cacheList = Cache["taskList"] as List<Task>;
 
-            tbEditTitle.Text = title;
-            tbEditDescription.Text = description;
+            int selectedIndex = Convert.ToInt32(hfSelectIndex.Value);
 
-            ClientScript.RegisterStartupScript(this.GetType(),
-                "ShowAlert", "const myModalAlternative = new bootstrap.Modal('#modalEditTask', null); myModalAlternative.show();", true);
-        }
+            cacheList.Remove(cacheList[selectedIndex]);
 
-        protected void lbDeleteRow_Click(object sender, EventArgs e)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            TaskService service = new TaskService(connectionString);
-
-            var idTask = (int)Cache["idTask"];
-
-            service.DeleteTaskFromId(idTask);
-
-            var dataSet = service.GetTasksFromDataBase();
-            gvTask.DataSource = dataSet.Tables[0];
+            hfSelectIndex.Value = string.Empty;
+            gvTask.DataSource = cacheList;
             gvTask.DataBind();
         }
 
-        protected void gvTask_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gvTask_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            Cache["idTask"] = (int)gvTask.DataKeys[e.RowIndex].Values["Id"];
+            hfSelectIndex.Value = e.RowIndex.ToString();
 
-            ClientScript.RegisterStartupScript(this.GetType(),
-                "ShowAlert", "const myModalAlternative = new bootstrap.Modal('#modalDeleteTask', null); myModalAlternative.show();", true);
+            ClientScript.RegisterStartupScript(this.GetType(), "ShowAlert", "const myModalAlternative = new bootstrap.Modal('#modalDeleteTask', null); myModalAlternative.show();", true);
         }
     }
 }

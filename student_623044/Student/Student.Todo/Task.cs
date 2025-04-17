@@ -6,11 +6,6 @@
     public class Task
     {
         /// <summary>
-        /// Id задачи
-        /// </summary>
-        public int IdTask { get; set; }
-
-        /// <summary>
         /// Заголовок задачи
         /// </summary>
         public string Title { get; set; }
