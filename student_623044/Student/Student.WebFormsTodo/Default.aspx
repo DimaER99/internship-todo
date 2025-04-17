@@ -4,11 +4,12 @@
 
     <div>
         <h1>Список задач</h1>
-        <asp:HiddenField runat="server" ID="hfSelectIndex" />
         <asp:Button ID="buttonAdd" runat="server" CssClass="btn btn-primary mb-2" OnClick="bAddTask_OnClick" Text="Добавить задачу" />
         <div>
-            <asp:GridView ID="gvTask" runat="server" AutoGenerateColumns="false" OnRowDeleting="gvTask_OnRowDeleting" OnRowEditing="gvTask_OnRowEditing" AllowPaging="true" CssClass="table table-bordered">
+            <asp:GridView ID="gvTask" runat="server" AutoGenerateColumns="false"
+                AllowPaging="true" CssClass="table table-bordered" DataKeyNames="Id" OnRowDeleting="gvTask_RowDeleting" OnRowEditing="gvTask_OnRowEditing">
                 <Columns>
+                    <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="true" />
                     <asp:BoundField DataField="Title" HeaderText="Заголовок" ReadOnly="true" />
                     <asp:BoundField DataField="Description" HeaderText="Описание" ReadOnly="true" />
                     <asp:ButtonField ButtonType="Button" HeaderText="Действие" CommandName="Edit" Text="Изменить" />
@@ -89,7 +90,7 @@
                     <h5>Если вы действительно хотите удалить задачу нажмите "Удалить", иначе "Отмена".</h5>
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" class="btn btn-primary" OnClick="lbEditDeleteTask_OnClick">Удалить</asp:LinkButton>
+                    <asp:LinkButton ID="lbDeleteRow" runat="server" class="btn btn-primary" OnClick="lbDeleteRow_Click">Удалить</asp:LinkButton>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
                 </div>
             </div>
