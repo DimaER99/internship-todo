@@ -15,15 +15,6 @@ namespace Student.WebFormsTodo
     {
 
         /// <summary>
-        /// hfSelectIndex control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfSelectIndex;
-
-        /// <summary>
         /// buttonAdd control.
         /// </summary>
         /// <remarks>
@@ -76,5 +67,14 @@ namespace Student.WebFormsTodo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEditDescription;
+
+        /// <summary>
+        /// lbDeleteRow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbDeleteRow;
     }
 }
