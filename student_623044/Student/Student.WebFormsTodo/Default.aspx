@@ -7,7 +7,29 @@
         <asp:Button ID="buttonAdd" runat="server" CssClass="btn btn-primary mb-2" OnClick="bAddTask_OnClick" Text="Добавить задачу" />
         <div>
             <asp:GridView ID="gvTask" runat="server" AutoGenerateColumns="false"
-                AllowPaging="true" CssClass="table table-bordered" DataKeyNames="Id" OnRowDeleting="gvTask_RowDeleting" OnRowEditing="gvTask_OnRowEditing">
+                AllowPaging="true"
+                CssClass="table table-bordered"
+                DataKeyNames="Id"
+                OnRowDeleting="gvTask_RowDeleting"
+                OnRowEditing="gvTask_OnRowEditing"
+                OnPageIndexChanging="gvTask_PageIndexChanging">
+
+                <PagerTemplate>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item">
+                                <asp:LinkButton ID="lnkPrev" runat="server" CommandName="Page" CommandArgument="Prev"
+                                    CssClass="page-link">Назад</asp:LinkButton>
+                            </li>
+                            <asp:PlaceHolder ID="phPages" runat="server"></asp:PlaceHolder>
+                            <li class="page-item">
+                                <asp:LinkButton ID="lnkNext" runat="server" CommandName="Page" CommandArgument="Next"
+                                    CssClass="page-link">Вперед</asp:LinkButton>
+                            </li>
+                        </ul>
+                    </nav>
+                </PagerTemplate>
+
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="true" />
                     <asp:BoundField DataField="Title" HeaderText="Заголовок" ReadOnly="true" />

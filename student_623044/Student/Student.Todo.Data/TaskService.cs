@@ -12,6 +12,10 @@ namespace Student.Todo.Data
             connectionStrings = connectionString;
         }
 
+        /// <summary>
+        /// Добавить задачу
+        /// </summary>
+        /// <param name="task">Задача</param>
         public void AddTaskInDataBase(Task task)
         {
             using (SqlConnection connection = new SqlConnection(connectionStrings))
@@ -27,6 +31,10 @@ namespace Student.Todo.Data
             }
         }
 
+        /// <summary>
+        /// Получить задачи
+        /// </summary>
+        /// <returns>Задачи</returns>
         public DataSet GetTasksFromDataBase()
         {
             using (SqlConnection connection = new SqlConnection(connectionStrings))
@@ -40,7 +48,11 @@ namespace Student.Todo.Data
                 }
             }
         }
-
+        
+        /// <summary>
+        /// Удаление задача
+        /// </summary>
+        /// <param name="idTaskDelete">Ид задачи</param>
         public void DeleteTaskFromId(int idTaskDelete)
         {
             using (SqlConnection connection = new SqlConnection(connectionStrings))
@@ -55,20 +67,12 @@ namespace Student.Todo.Data
             }
         }
 
-        public DataSet ChangeTaskFromDataBase()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionStrings))
-            {
-                string query = "SELECT Id, Title, Description FROM Todo";
-                using (SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection))
-                {
-                    DataSet dataSet = new DataSet();
-                    dataAdapter.Fill(dataSet);
-                    return dataSet;
-                }
-            }
-        }
-
+        /// <summary>
+        /// Изменить задачу
+        /// </summary>
+        /// <param name="idChangeTask">Ид задачи</param>
+        /// <param name="changeTitle">Изменить заголовок</param>
+        /// <param name="changeDescription">Изменить описание</param>
         public void ChangeTaskFromId(int idChangeTask, string changeTitle, string changeDescription)
         {
             using (SqlConnection connection = new SqlConnection(connectionStrings))

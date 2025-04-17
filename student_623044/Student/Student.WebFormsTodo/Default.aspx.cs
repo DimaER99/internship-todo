@@ -11,9 +11,9 @@ namespace Student.WebFormsTodo
 {
     public partial class _Default : Page
     {
-        static string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private readonly static string connectionString = ConfigurationManager.ConnectionStrings["BDTask"].ConnectionString;
 
-        TaskService service = new TaskService(connectionString);
+        private readonly TaskService service = new TaskService(connectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -54,7 +54,6 @@ namespace Student.WebFormsTodo
                 "ShowAlert", "const myModalAlternative = new bootstrap.Modal('#modalAddTask', null); myModalAlternative.show();", true);
         }
 
-
         protected void lbSaveAddChanges_OnClick(object sender, EventArgs e)
         {
             var taskList = new List<Task>();
@@ -70,10 +69,6 @@ namespace Student.WebFormsTodo
                 cacheList.Add(new Task(tbAddTitle.Text, tbAddDescription.Text));
             }
 
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-            TaskService service = new TaskService(connectionString);
-
             Task task = new Task(tbAddTitle.Text, tbAddDescription.Text);
             service.AddTaskInDataBase(task);
 
@@ -84,9 +79,6 @@ namespace Student.WebFormsTodo
 
         protected void lbSaveEditChanges_OnClick(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            TaskService service = new TaskService(connectionString);
-
             var idTask = (int)Cache["idTask"];
             string changeTitle = tbEditTitle.Text;
             string changeDescription = tbEditDescription.Text;
@@ -112,8 +104,6 @@ namespace Student.WebFormsTodo
 
         protected void lbDeleteRow_Click(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            TaskService service = new TaskService(connectionString);
 
             var idTask = (int)Cache["idTask"];
 
@@ -130,6 +120,26 @@ namespace Student.WebFormsTodo
 
             ClientScript.RegisterStartupScript(this.GetType(),
                 "ShowAlert", "const myModalAlternative = new bootstrap.Modal('#modalDeleteTask', null); myModalAlternative.show();", true);
+        }
+
+        protected void gvTask_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            var dataSet = service.GetTasksFromDataBase();
+            gvTask.DataSource = dataSet.Tables[0];
+            gvTask.DataBind();
+
+            int pageCount = gvTask.PageCount;
+            int newPageIndex = e.NewPageIndex;
+
+            if (newPageIndex < 0)
+                newPageIndex = 0;
+            else if (newPageIndex >= pageCount)
+                newPageIndex = pageCount - 1;
+
+            gvTask.PageIndex = newPageIndex;
+
+            gvTask.DataSource = dataSet.Tables[0];
+            gvTask.DataBind();
         }
     }
 }
