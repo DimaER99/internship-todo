@@ -1,14 +1,20 @@
-﻿namespace Student.Todo
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Student.Todo
 {
     /// <summary>
     /// Задача
     /// </summary>
+
+    [Table("Todo")]
     public class Task
     {
         /// <summary>
         /// Id задачи
         /// </summary>
-        public int IdTask { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         /// <summary>
         /// Заголовок задачи
@@ -19,6 +25,14 @@
         /// Описание задачи
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Конструтор для работы EF
+        /// </summary>
+        public Task()
+        {
+
+        }
 
         public Task(string title, string description)
         {

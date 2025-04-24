@@ -7,13 +7,14 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace Student.WebFormsTodo
 {
     public partial class _Default : Page
     {
         private readonly static string connectionString = ConfigurationManager.ConnectionStrings["BDTask"].ConnectionString;
 
-        private readonly TaskService service = new TaskService(connectionString);
+        private readonly ITaskService service = new TaskServiceEF(new TodoContext(connectionString));
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -104,7 +105,6 @@ namespace Student.WebFormsTodo
 
         protected void lbDeleteRow_Click(object sender, EventArgs e)
         {
-
             var idTask = (int)Cache["idTask"];
 
             service.DeleteTaskFromId(idTask);
