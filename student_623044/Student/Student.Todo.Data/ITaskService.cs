@@ -17,7 +17,7 @@ namespace Student.Todo.Data
         DataSet GetTasksFromDataBase();
 
         /// <summary>
-        /// Удаление задача
+        /// Удаление задачи
         /// </summary>
         /// <param name="idTaskDelete">Ид задачи</param>
         void DeleteTaskFromId(int idTaskDelete);

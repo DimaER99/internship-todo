@@ -4,19 +4,21 @@ namespace Student.Todo.Data
 {
     public class TaskServiceEF : ITaskService
     {
-        private readonly DatabaseConfiguration _db;
+        private readonly TodoContext _db;
 
-        public TaskServiceEF(DatabaseConfiguration db)
+        public TaskServiceEF(TodoContext db)
         {
             _db = db;
         }
 
+        /// <inheritdoc/>
         void ITaskService.AddTaskInDataBase(Task task)
         {
             _db.Todo.Add(task);
             _db.SaveChanges();
         }
 
+        /// <inheritdoc/>
         void ITaskService.ChangeTaskFromId(int idChangeTask, string changeTitle, string changeDescription)
         {
             var task = _db.Todo.Find(idChangeTask);
@@ -27,6 +29,7 @@ namespace Student.Todo.Data
             _db.SaveChanges();
         }
 
+        /// <inheritdoc/>
         void ITaskService.DeleteTaskFromId(int idTaskDelete)
         {
             var task = _db.Todo.Find(idTaskDelete);
@@ -37,6 +40,7 @@ namespace Student.Todo.Data
             }
         }
 
+        /// <inheritdoc/>
         DataSet ITaskService.GetTasksFromDataBase()
         {
             var dataSet = new DataSet();
