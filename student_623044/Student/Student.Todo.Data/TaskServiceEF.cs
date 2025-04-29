@@ -4,43 +4,44 @@ namespace Student.Todo.Data
 {
     public class TaskServiceEF : ITaskService
     {
-        private readonly TodoContext _db;
+        private readonly AppDbContext _context;
 
-        public TaskServiceEF(TodoContext db)
+        public TaskServiceEF(string connectionString)
         {
-            _db = db;
+            _context = new AppDbContext(connectionString);
         }
 
-        /// <inheritdoc/>
+        public TaskServiceEF(AppDbContext context)
+        {
+            _context = context;
+        }
+
         void ITaskService.AddTaskInDataBase(Task task)
         {
-            _db.Todo.Add(task);
-            _db.SaveChanges();
+            _context.Todo.Add(task);
+            _context.SaveChanges();
         }
 
-        /// <inheritdoc/>
         void ITaskService.ChangeTaskFromId(int idChangeTask, string changeTitle, string changeDescription)
         {
-            var task = _db.Todo.Find(idChangeTask);
+            var task = _context.Todo.Find(idChangeTask);
             if (task == null) return;
 
             task.Title = changeTitle;
             task.Description = changeDescription;
-            _db.SaveChanges();
+            _context.SaveChanges();
         }
 
-        /// <inheritdoc/>
         void ITaskService.DeleteTaskFromId(int idTaskDelete)
         {
-            var task = _db.Todo.Find(idTaskDelete);
+            var task = _context.Todo.Find(idTaskDelete);
             if (task != null)
             {
-                _db.Todo.Remove(task);
-                _db.SaveChanges();
+                _context.Todo.Remove(task);
+                _context.SaveChanges();
             }
         }
 
-        /// <inheritdoc/>
         DataSet ITaskService.GetTasksFromDataBase()
         {
             var dataSet = new DataSet();
@@ -50,7 +51,7 @@ namespace Student.Todo.Data
             table.Columns.Add("Title", typeof(string));
             table.Columns.Add("Description", typeof(string));
 
-            foreach (var task in _db.Todo)
+            foreach (var task in _context.Todo)
             {
                 table.Rows.Add(task.Id, task.Title, task.Description);
             }

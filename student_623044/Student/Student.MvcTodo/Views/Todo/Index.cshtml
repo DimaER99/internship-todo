@@ -1,0 +1,54 @@
+﻿@model List<Student.MvcTodo.Models.Todo>
+
+<h2>Список задач</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td style="width: 200px">
+
+                    <div class="d-flex flex-column gap-2">
+
+                        @Html.ActionLink("Редактировать", "Edit", new { id = item.Id },
+                            new { @class = "btn btn-primary w-100" })
+
+                        @using (Html.BeginForm("DeleteTask", "Todo", new { id = item.Id }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-secondary w-100"
+                                    onclick="return confirm('Удалить задачу?')">
+                                Удалить
+                            </button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("AddTask", "Todo"))
+{
+    <div class="form-group">
+        @Html.Label("Название")
+        @Html.TextBox("Title", null, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Описание")
+        @Html.TextArea("Description", null, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+}
