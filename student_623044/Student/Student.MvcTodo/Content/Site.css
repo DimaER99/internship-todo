@@ -18,3 +18,19 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.table td {
+    white-space: normal;
+    word-break: break-word;
+    max-width: 300px;
+}
+
+td .btn {
+    width: 120px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+}

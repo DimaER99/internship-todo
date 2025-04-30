@@ -34,8 +34,8 @@
                     <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="true" />
                     <asp:BoundField DataField="Title" HeaderText="Заголовок" ReadOnly="true" />
                     <asp:BoundField DataField="Description" HeaderText="Описание" ReadOnly="true" />
-                    <asp:ButtonField ButtonType="Button" HeaderText="Действие" CommandName="Edit" Text="Изменить" />
-                    <asp:ButtonField ButtonType="Button" HeaderText="Действие" CommandName="Delete" Text="Удалить" />
+                    <asp:ButtonField ButtonType="Button" HeaderText="Действие" CommandName="Edit" Text="Изменить" ControlStyle-CssClass="btn btn-primary" />
+                    <asp:ButtonField ButtonType="Button" HeaderText="Действие" CommandName="Delete" Text="Удалить" ControlStyle-CssClass="btn btn-secondary " />
                 </Columns>
             </asp:GridView>
         </div>
@@ -67,7 +67,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="modal" tabindex="-1" id="modalEditTask">
         <div class="modal-dialog">

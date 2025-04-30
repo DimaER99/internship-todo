@@ -16,25 +16,25 @@ namespace Student.Todo.Data
             _context = context;
         }
 
-        void ITaskService.AddTaskInDataBase(Task task)
+        public void AddTaskInDataBase(Task task)
         {
             _context.Todo.Add(task);
             _context.SaveChanges();
         }
 
-        void ITaskService.ChangeTaskFromId(int idChangeTask, string changeTitle, string changeDescription)
+        public void ChangeTaskFromId(int id, string title, string description)
         {
-            var task = _context.Todo.Find(idChangeTask);
+            var task = _context.Todo.Find(id);
             if (task == null) return;
 
-            task.Title = changeTitle;
-            task.Description = changeDescription;
+            task.Title = title;
+            task.Description = description;
             _context.SaveChanges();
         }
 
-        void ITaskService.DeleteTaskFromId(int idTaskDelete)
+        public void DeleteTaskFromId(int id)
         {
-            var task = _context.Todo.Find(idTaskDelete);
+            var task = _context.Todo.Find(id);
             if (task != null)
             {
                 _context.Todo.Remove(task);
@@ -42,7 +42,7 @@ namespace Student.Todo.Data
             }
         }
 
-        DataSet ITaskService.GetTasksFromDataBase()
+       public DataSet GetTasksFromDataBase()
         {
             var dataSet = new DataSet();
             var table = new DataTable();
