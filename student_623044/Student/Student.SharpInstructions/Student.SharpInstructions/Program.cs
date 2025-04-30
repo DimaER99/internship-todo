@@ -111,7 +111,6 @@ namespace Student.SharpInstructions
             }
         }
 
-
         private static void OperatorWhile()
         {
             Console.WriteLine("Введите любое число до 10");
@@ -121,9 +120,7 @@ namespace Student.SharpInstructions
                 count++;
                 Console.WriteLine(count);
             }
-
         }
-
 
         private static void OperatorDoWhile()
         {
@@ -136,10 +133,7 @@ namespace Student.SharpInstructions
 
                 Console.WriteLine(name);
             } while (name == "");
-
-
         }
-
 
         private static void OperatorFor()
         {
@@ -164,8 +158,6 @@ namespace Student.SharpInstructions
                 Console.WriteLine(fruit);
             }
         }
-
-
 
         private static void OperatorSwitch()
         {
@@ -260,13 +252,11 @@ namespace Student.SharpInstructions
                 default:
                     {
                         Console.WriteLine("Некорректный выбор номера месяца");
-                        
+
                         break;
 
                     }
-                    
             }
         }
-
     }
 }

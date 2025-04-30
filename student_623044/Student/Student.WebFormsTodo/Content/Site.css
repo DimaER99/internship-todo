@@ -18,7 +18,6 @@ textarea {
     max-width: 280px;
 }
 
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .jumbotron {
@@ -29,3 +28,42 @@ textarea {
         padding: 0;
     }
 }
+
+.table td {
+    white-space: normal;
+    word-break: break-word;
+    max-width: 300px;
+}
+
+td .btn {
+    width: 120px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+}
+
+#MainContent_gvTask td:nth-last-child(1),
+#MainContent_gvTask td:nth-last-child(2) {
+    width: 100px;
+    padding: 3px !important;
+}
+
+#MainContent_gvTask input[type="button"],
+#MainContent_gvTask input[type="submit"] {
+    width: 100% !important;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 6px 12px !important;
+    margin: 0;
+    border: none;
+    display: block;
+    border-radius: 4px;
+}
+
+    #MainContent_gvTask input[type="button"]:hover,
+    #MainContent_gvTask input[type="submit"]:hover {
+        opacity: 0.9;
+    }

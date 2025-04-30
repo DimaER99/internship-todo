@@ -14,7 +14,7 @@ namespace Student.WebFormsTodo
     {
         private readonly static string connectionString = ConfigurationManager.ConnectionStrings["BDTask"].ConnectionString;
 
-        private readonly ITaskService service = new TaskServiceEF(new TodoContext(connectionString));
+        private readonly ITaskService service = new TaskServiceEF(connectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {

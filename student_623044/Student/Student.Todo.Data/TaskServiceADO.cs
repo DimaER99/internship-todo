@@ -13,7 +13,7 @@ namespace Student.Todo.Data
         }
 
         /// <inheritdoc/>
-        void ITaskService.AddTaskInDataBase(Task task)
+        public void AddTaskInDataBase(Task task)
         {
             using (SqlConnection connection = new SqlConnection(connectionStrings))
             {
@@ -29,7 +29,7 @@ namespace Student.Todo.Data
         }
 
         /// <inheritdoc/>
-        DataSet ITaskService.GetTasksFromDataBase()
+        public DataSet GetTasksFromDataBase()
         {
             using (SqlConnection connection = new SqlConnection(connectionStrings))
             {
@@ -44,7 +44,7 @@ namespace Student.Todo.Data
         }
 
         /// <inheritdoc/>
-        void ITaskService.DeleteTaskFromId(int idTaskDelete)
+        public void DeleteTaskFromId(int idTaskDelete)
         {
             using (SqlConnection connection = new SqlConnection(connectionStrings))
             {
@@ -59,7 +59,7 @@ namespace Student.Todo.Data
         }
 
         /// <inheritdoc/>
-        void ITaskService.ChangeTaskFromId(int idChangeTask, string changeTitle, string changeDescription)
+        public void ChangeTaskFromId(int idChangeTask, string changeTitle, string changeDescription)
         {
             using (SqlConnection connection = new SqlConnection(connectionStrings))
             {

@@ -4,44 +4,45 @@ namespace Student.Todo.Data
 {
     public class TaskServiceEF : ITaskService
     {
-        private readonly TodoContext _db;
+        private readonly AppDbContext _context;
 
-        public TaskServiceEF(TodoContext db)
+        public TaskServiceEF(string connectionString)
         {
-            _db = db;
+            _context = new AppDbContext(connectionString);
         }
 
-        /// <inheritdoc/>
-        void ITaskService.AddTaskInDataBase(Task task)
+        public TaskServiceEF(AppDbContext context)
         {
-            _db.Todo.Add(task);
-            _db.SaveChanges();
+            _context = context;
         }
 
-        /// <inheritdoc/>
-        void ITaskService.ChangeTaskFromId(int idChangeTask, string changeTitle, string changeDescription)
+        public void AddTaskInDataBase(Task task)
         {
-            var task = _db.Todo.Find(idChangeTask);
+            _context.Todo.Add(task);
+            _context.SaveChanges();
+        }
+
+        public void ChangeTaskFromId(int id, string title, string description)
+        {
+            var task = _context.Todo.Find(id);
             if (task == null) return;
 
-            task.Title = changeTitle;
-            task.Description = changeDescription;
-            _db.SaveChanges();
+            task.Title = title;
+            task.Description = description;
+            _context.SaveChanges();
         }
 
-        /// <inheritdoc/>
-        void ITaskService.DeleteTaskFromId(int idTaskDelete)
+        public void DeleteTaskFromId(int id)
         {
-            var task = _db.Todo.Find(idTaskDelete);
+            var task = _context.Todo.Find(id);
             if (task != null)
             {
-                _db.Todo.Remove(task);
-                _db.SaveChanges();
+                _context.Todo.Remove(task);
+                _context.SaveChanges();
             }
         }
 
-        /// <inheritdoc/>
-        DataSet ITaskService.GetTasksFromDataBase()
+       public DataSet GetTasksFromDataBase()
         {
             var dataSet = new DataSet();
             var table = new DataTable();
@@ -50,7 +51,7 @@ namespace Student.Todo.Data
             table.Columns.Add("Title", typeof(string));
             table.Columns.Add("Description", typeof(string));
 
-            foreach (var task in _db.Todo)
+            foreach (var task in _context.Todo)
             {
                 table.Rows.Add(task.Id, task.Title, task.Description);
             }
