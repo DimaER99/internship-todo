@@ -19,15 +19,15 @@ namespace Student.Todo.Data
         /// <summary>
         /// Удаление задачи
         /// </summary>
-        /// <param name="idTaskDelete">Ид задачи</param>
-        void DeleteTaskFromId(int idTaskDelete);
+        /// <param name="id">Ид задачи</param>
+        void DeleteTaskFromId(int id);
 
         /// <summary>
         /// Изменить задачу
         /// </summary>
-        /// <param name="idChangeTask">Ид задачи</param>
-        /// <param name="changeTitle">Изменить заголовок</param>
-        /// <param name="changeDescription">Изменить описание</param>
-        void ChangeTaskFromId(int idChangeTask, string changeTitle, string changeDescription);
+        /// <param name="id">Ид задачи</param>
+        /// <param name="title">Заголовок</param>
+        /// <param name="description">Описание</param>
+        void ChangeTaskFromId(int id, string title, string description);
     }
 }
