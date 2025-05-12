@@ -44,14 +44,14 @@ namespace Student.Todo.Data
         }
 
         /// <inheritdoc/>
-        public void DeleteTaskFromId(int idTaskDelete)
+        public void DeleteTaskFromId(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionStrings))
             {
                 string query = "DELETE FROM Todo WHERE Id = @Id";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Id", idTaskDelete);
+                    command.Parameters.AddWithValue("@Id", id);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -59,7 +59,7 @@ namespace Student.Todo.Data
         }
 
         /// <inheritdoc/>
-        public void ChangeTaskFromId(int idChangeTask, string changeTitle, string changeDescription)
+        public void ChangeTaskFromId(int id, string title, string description)
         {
             using (SqlConnection connection = new SqlConnection(connectionStrings))
             {
@@ -68,9 +68,9 @@ namespace Student.Todo.Data
                 {
                     connection.Open();
 
-                    command.Parameters.AddWithValue("@Title", changeTitle);
-                    command.Parameters.AddWithValue("@Description", changeDescription);
-                    command.Parameters.AddWithValue("@Id", idChangeTask);
+                    command.Parameters.AddWithValue("@Title", title);
+                    command.Parameters.AddWithValue("@Description", description);
+                    command.Parameters.AddWithValue("@Id", id);
 
                     command.ExecuteNonQuery();
                 }
